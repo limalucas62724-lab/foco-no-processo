@@ -1,6 +1,7 @@
 {
   "name": "Foco no Processo",
   "short_name": "Foco no Processo",
+  "id": "/foco-no-processo/",
   "description": "Aplicativo para acompanhar hábitos, peso, água, alimentação, exercícios e evolução.",
   "start_url": "./",
   "display": "standalone",

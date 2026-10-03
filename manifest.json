@@ -1,0 +1,17 @@
+{
+  "name": "Foco no Processo",
+  "short_name": "Foco no Processo",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#030b08",
+  "theme_color": "#071510",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

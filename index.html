@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071510">
+<meta name="description" content="Foco no Processo — acompanhamento de hábitos, peso, água, alimentação e exercícios.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<title>Foco no Processo</title>
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+  <div class="brand"><span class="brandmark">⚡</span><div><strong>FOCO</strong><small>NO PROCESSO</small></div></div>
+  <button class="iconbtn" id="notifyBtn" aria-label="Notificações">🔔</button>
+</header>
+
+<main>
+<section id="home" class="screen active">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">PEQUENOS PASSOS, GRANDES RESULTADOS</p>
+      <h1>Olá, <span id="helloName">você</span>! 💪</h1>
+      <p class="muted">Seu foco hoje é cuidar de você.</p>
+    </div>
+    <div class="ring" id="goalRing"><span id="goalPct">0%</span></div>
+  </div>
+
+  <div class="card goalcard">
+    <div><span class="label">Peso atual</span><strong id="currentWeight">-- kg</strong></div>
+    <div><span class="label">Meta</span><strong id="targetWeight">-- kg</strong></div>
+    <div><span class="label">Faltam</span><strong id="remainingWeight">-- kg</strong></div>
+  </div>
+
+  <div class="quickgrid">
+    <button class="quick" data-go="water"><b>💧</b><span>Água</span><strong id="waterQuick">0 / 8</strong></button>
+    <button class="quick" data-go="diary"><b>🥗</b><span>Diário</span><strong id="mealQuick">0 refeições</strong></button>
+    <button class="quick" data-go="workouts"><b>🏃</b><span>Treino</span><strong id="workoutQuick">0 min</strong></button>
+    <button class="quick" data-go="progress"><b>📈</b><span>Evolução</span><strong id="daysQuick">0 dias</strong></button>
+  </div>
+
+  <div class="card">
+    <div class="cardtitle"><h2>Seu progresso hoje</h2><button class="textbtn" data-go="diary">Ver diário</button></div>
+    <div class="progressrow"><span>Água</span><div class="bar"><i id="waterBar"></i></div><b id="waterBarText">0%</b></div>
+    <div class="progressrow"><span>Hábitos</span><div class="bar"><i id="habitBar"></i></div><b id="habitBarText">0%</b></div>
+  </div>
+
+  <div class="quote">“O resultado aparece quando você não desiste do processo.”</div>
+</section>
+
+<section id="diary" class="screen">
+  <div class="sectionhead"><div><p class="eyebrow">HOJE</p><h1>Diário</h1></div></div>
+  <div class="card">
+    <h2>Como você está hoje?</h2>
+    <div class="moodgrid">
+      <button data-mood="😞">😞<small>Difícil</small></button>
+      <button data-mood="😐">😐<small>Normal</small></button>
+      <button data-mood="🙂">🙂<small>Bem</small></button>
+      <button data-mood="😄">😄<small>Ótimo</small></button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="cardtitle"><h2>Refeições</h2><span class="pill" id="mealCount">0</span></div>
+    <div id="meals"></div>
+    <button class="primary" id="addMeal">+ Registrar refeição</button>
+  </div>
+  <div class="card">
+    <h2>Nota do dia</h2>
+    <textarea id="dailyNote" placeholder="Como foi seu dia?"></textarea>
+    <button class="secondary" id="saveNote">Salvar nota</button>
+  </div>
+</section>
+
+<section id="food" class="screen">
+  <div class="sectionhead"><div><p class="eyebrow">ALIMENTAÇÃO</p><h1>Comer melhor</h1></div></div>
+  <div class="tabs"><button class="tab active" data-foodtab="tips">Orientações</button><button class="tab" data-foodtab="recipes">Receitas</button></div>
+  <div id="foodTips" class="stack">
+    <div class="card tip"><b>🥦 Priorize alimentos naturais</b><p>Monte refeições com verduras, legumes, frutas, feijão, ovos e outras fontes de proteína.</p></div>
+    <div class="card tip"><b>🍚 Não precisa cortar tudo</b><p>Arroz e feijão podem fazer parte de uma alimentação equilibrada. O conjunto da rotina importa.</p></div>
+    <div class="card tip"><b>🥤 Observe bebidas</b><p>Água costuma ser uma opção simples para reduzir calorias líquidas e manter hidratação.</p></div>
+    <div class="card tip"><b>🍽️ Respeite sua fome</b><p>Coma devagar e observe sinais de fome e saciedade.</p></div>
+  </div>
+  <div id="foodRecipes" class="stack hidden">
+    <div class="card recipe"><h3>Omelete com legumes</h3><p>Ovos + tomate + cebola + folhas. Uma opção simples para café da manhã ou jantar.</p></div>
+    <div class="card recipe"><h3>Arroz, feijão e frango</h3><p>Combine arroz, feijão, uma proteína e bastante salada/legumes.</p></div>
+    <div class="card recipe"><h3>Iogurte com fruta</h3><p>Iogurte natural + fruta + aveia, ajustando a porção às suas necessidades.</p></div>
+  </div>
+  <div class="notice">Conteúdo educativo. O aplicativo não substitui avaliação de médico ou nutricionista.</div>
+</section>
+
+<section id="workouts" class="screen">
+  <div class="sectionhead"><div><p class="eyebrow">MOVIMENTO</p><h1>Exercícios</h1></div></div>
+  <div class="card featured">
+    <span class="pill">TREINO DO DIA</span><h2>Caminhada de 30 minutos</h2>
+    <p>Comece em ritmo confortável e ajuste a intensidade ao seu nível.</p>
+    <button class="primary" id="startWalk">Iniciar 30 min</button>
+  </div>
+  <div class="stack">
+    <button class="listcard workout" data-min="20"><span>🚶</span><div><b>Caminhada leve</b><small>20 min · iniciante</small></div><strong>+</strong></button>
+    <button class="listcard workout" data-min="30"><span>🏃</span><div><b>Caminhada rápida</b><small>30 min · intermediário</small></div><strong>+</strong></button>
+    <button class="listcard workout" data-min="15"><span>🧘</span><div><b>Mobilidade</b><small>15 min · todos os níveis</small></div><strong>+</strong></button>
+  </div>
+  <div class="notice">Se você tiver uma condição de saúde ou estiver começando atividade física, procure orientação profissional quando necessário.</div>
+</section>
+
+<section id="water" class="screen">
+  <div class="sectionhead"><div><p class="eyebrow">HIDRATAÇÃO</p><h1>Água</h1></div></div>
+  <div class="card watercard">
+    <div class="waterdrop">💧</div>
+    <h2><span id="waterLiters">0,0</span> L</h2>
+    <p>Meta diária: <b id="waterGoal">2,0</b> L</p>
+    <div class="waterbar"><i id="waterLitersBar"></i></div>
+    <div class="wateractions"><button data-water="250">+ 250 ml</button><button data-water="500">+ 500 ml</button><button class="danger" id="resetWater">Zerar</button></div>
+  </div>
+  <div class="card"><h2>Dica</h2><p class="muted">A necessidade de água varia entre pessoas e situações. Use sua sede e orientação profissional como referência.</p></div>
+</section>
+
+<section id="progress" class="screen">
+  <div class="sectionhead"><div><p class="eyebrow">EVOLUÇÃO</p><h1>Seu caminho</h1></div></div>
+  <div class="card stats">
+    <div><span>Inicial</span><b id="initialStat">--</b></div><div><span>Atual</span><b id="currentStat">--</b></div><div><span>Variação</span><b id="lossStat">--</b></div>
+  </div>
+  <div class="card">
+    <div class="cardtitle"><h2>Registrar peso</h2><span class="pill">kg</span></div>
+    <div class="formrow"><input id="weightInput" type="number" step="0.1" placeholder="Ex.: 78,5"><button class="primary" id="saveWeight">Salvar</button></div>
+  </div>
+  <div class="card"><h2>Histórico</h2><div id="weightHistory"></div></div>
+</section>
+
+<section id="challenges" class="screen">
+  <div class="sectionhead"><div><p class="eyebrow">CONSISTÊNCIA</p><h1>Desafios</h1></div></div>
+  <div class="card challenge featured"><span class="pill">7 DIAS</span><h2>Comece pequeno</h2><p>Complete água, movimento e uma escolha alimentar consciente todos os dias.</p><div class="challengebar"><i id="challengeBar"></i></div><b id="challengeText">0 / 7 dias</b></div>
+  <div class="stack" id="challengeList"></div>
+</section>
+
+<section id="premium" class="screen">
+  <div class="premiumhero"><span>👑</span><p class="eyebrow">FOCO NO PROCESSO+</p><h1>Mais ferramentas para sua jornada</h1><p>Desbloqueie recursos extras e conteúdos exclusivos.</p></div>
+  <div class="card premiumcard">
+    <div class="price">R$ 19,90 <small>/ mês</small></div>
+    <ul><li>✓ Relatórios de evolução</li><li>✓ Mais desafios e receitas</li><li>✓ Biblioteca de treinos</li><li>✓ Personalização avançada</li></ul>
+    <button class="primary" id="premiumBtn">Assinar Premium</button>
+    <small class="muted center">Demonstração: o pagamento real será conectado na etapa de publicação.</small>
+  </div>
+</section>
+
+<section id="profile" class="screen">
+  <div class="sectionhead"><div><p class="eyebrow">SEU PERFIL</p><h1>Configurações</h1></div></div>
+  <div class="card">
+    <label>Seu nome<input id="nameInput" type="text" placeholder="Como quer ser chamado?"></label>
+    <label>Peso atual (kg)<input id="profileWeight" type="number" step="0.1"></label>
+    <label>Meta de peso (kg)<input id="profileTarget" type="number" step="0.1"></label>
+    <label>Meta de água (litros)<input id="profileWater" type="number" step="0.1"></label>
+    <button class="primary" id="saveProfile">Salvar perfil</button>
+  </div>
+  <div class="card dangercard"><h2>Privacidade</h2><p>Os dados desta versão são armazenados localmente no aparelho.</p><button class="secondary" id="clearData">Apagar meus dados</button></div>
+</section>
+</main>
+
+<nav class="nav">
+ <button data-go="home" class="active">⌂<span>Início</span></button>
+ <button data-go="diary">▣<span>Diário</span></button>
+ <button data-go="workouts">🏃<span>Treino</span></button>
+ <button data-go="progress">↗<span>Evolução</span></button>
+ <button data-go="profile">♙<span>Perfil</span></button>
+</nav>
+<div id="toast" class="toast"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
